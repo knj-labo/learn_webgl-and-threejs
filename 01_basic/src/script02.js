@@ -7,6 +7,22 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+/**
+ * Objects
+ */
+const group = new THREE.Group()
+scene.add(group)
+
+
+/**
+ * cubes
+ */
+const cubes = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xff0000 })
+)
+
+group.add(cubes)
 
 /**
  * Axes Helper
