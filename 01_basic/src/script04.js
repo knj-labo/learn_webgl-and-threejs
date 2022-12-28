@@ -4,8 +4,13 @@ import * as THREE from 'three'
 /**
  * Cursor
  */
+const cursor = {
+    x: 0,
+    y: 0
+}
 window.addEventListener('mousemove', (event) => {
-    console.log(event.clientX)
+    cursor.x = event.clientX / sizes.width - 0.5
+    cursor.y = - (event.clientY / sizes.height - 0.5)
 })
 
 // Canvas
@@ -51,7 +56,13 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    mesh.rotation.y = elapsedTime;
+    // mesh.rotation.y = elapsedTime;
+
+    // Update camera
+    camera.position.x = Math.min(cursor.x * Math.PI * 2) * 2
+    camera.position.z = Math.cos(cursor.x * Math.PI * 2) * 2
+    camera.position.y = cursor.y * 3
+    camera.lookAt(mesh.position)
 
     // Render
     renderer.render(scene, camera)
