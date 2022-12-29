@@ -18,10 +18,40 @@ const canvas = document.querySelector('canvas.webgl')
 
 // Sizes
 const sizes = {
-    width: 800,
-    height: 600
+    width: window.innerWidth,
+    height: window.innerWidth
 }
 
+window.addEventListener('resize', () => {
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
+
+window.addEventListener('dblclick', () => {
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement
+    if(!fullscreenElement && canvas.requestFullscreen) {
+      return canvas.requestFullscreen()
+    }
+    if(!fullscreenElement && canvas.webkitRequestFullscreen) {
+      return canvas.webkitRequestFullscreen()
+    }
+    if(fullscreenElement && document.exitFullscreen) {
+      return document.exitFullscreen()
+    }
+    if(fullscreenElement && document.webkitExitFullscreen) {
+      return document.webkitExitFullscreen()
+    }
+    return console.log("something went wrong")
+})
 // Scene
 const scene = new THREE.Scene()
 
