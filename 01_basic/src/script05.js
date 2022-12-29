@@ -56,6 +56,30 @@ scene.add(camera)
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
 
+const image = new Image()
+const texture = new THREE.Texture(image)
+image.addEventListener('load', () => {
+    texture.needsUpdate = true
+})
+image.src = '../static/door.jpg'
+
+// Texture
+const textureLoader = new THREE.TextureLoader()
+const texture = textureLoader.load(
+    '/textures/door/color.jpg',
+    () =>
+    {
+        console.log('loading finished')
+    },
+    () =>
+    {
+        console.log('loading progressing')
+    },
+    () =>
+    {
+        console.log('loading error')
+    }
+)
 /**
  * Renderer
  */
