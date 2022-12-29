@@ -55,10 +55,27 @@ window.addEventListener('dblclick', () => {
 // Scene
 const scene = new THREE.Scene()
 
+// Create an empty BufferGeometry
+const geometry = new THREE.BufferGeometry()
+
+// Create a Float32Array containing the vertices position (3 by 3)
+const positionsArray = new Float32Array([
+    0, 0, 0, // First vertex
+    0, 1, 0, // Second vertex
+    1, 0, 0  // Third vertex
+])
+
+// Create the attribute and name it 'position'
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
+geometry.setAttribute('position', positionsAttribute)
+
 // Object
 const mesh = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1, 5, 5, 5),
-    new THREE.MeshBasicMaterial({ color: 0xff0000 })
+    new THREE.MeshBasicMaterial({
+        color: 0xff0000,
+        wireframe: true
+    })
 )
 scene.add(mesh)
 
