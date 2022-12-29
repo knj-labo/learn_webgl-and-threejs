@@ -1,5 +1,8 @@
 # editor
 .idea
 
+# build
+dist
+
 # dependencies
 01_basic/node_modules
