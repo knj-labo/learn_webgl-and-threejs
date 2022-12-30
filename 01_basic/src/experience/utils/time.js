@@ -16,7 +16,6 @@ export default class Time extends EventEmitter {
     }
 
     tick() {
-        console.log('tick')
 
         const currentTime = Date.now()
         this.delta = currentTime - this.current
