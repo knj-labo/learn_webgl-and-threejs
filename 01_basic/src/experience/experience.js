@@ -2,6 +2,7 @@ import { Scene } from 'three'
 import Sizes from './utils/sizes.js'
 import Time from './utils/time.js'
 import Camera from './Camera.js'
+import Renderer from './renderer.js'
 
 let instance = null
 
@@ -24,6 +25,7 @@ export default class Experience {
         this.time = new Time()
         this.scene = new Scene()
         this.camera = new Camera(this)
+        this.renderer = new Renderer()
 
         this.sizes.on('resize', this.resize)
 
