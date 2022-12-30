@@ -1,5 +1,5 @@
 import Sizes from './utils/sizes.js'
-import EventEmitter from "./utils/event-emitter";
+import Time from './utils/time.js'
 
 export default class Experience {
     constructor(canvas) {
@@ -10,15 +10,20 @@ export default class Experience {
 
         // setup
         this.sizes = new Sizes()
-        console.log(this.sizes.width)
-        console.log(this.sizes.height)
-        console.log(this.sizes.pixelRatio)
+        this.time = new Time()
 
-        // setup
         this.sizes.on('resize', this.resize)
+
+        this.time.on('tick', () => {
+            this.update()
+        })
     }
 
     resize() {
         console.log('A resize occurred')
+    }
+
+    update() {
+
     }
 }
