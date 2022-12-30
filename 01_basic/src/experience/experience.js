@@ -1,7 +1,7 @@
 import { Scene } from 'three'
 import Sizes from './utils/sizes.js'
 import Time from './utils/time.js'
-import Camera from './Camera.js'
+import Camera from './camera.js'
 import Renderer from './renderer.js'
 
 let instance = null
