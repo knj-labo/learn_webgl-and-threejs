@@ -1,8 +1,9 @@
 import { Scene } from 'three'
 import Sizes from './utils/sizes.js'
 import Time from './utils/time.js'
-import Camera from './camera.js'
+import Camera from "./camera"
 import Renderer from './renderer.js'
+import World from "./world/world"
 
 let instance = null
 
@@ -24,10 +25,13 @@ export default class Experience {
         this.sizes = new Sizes()
         this.time = new Time()
         this.scene = new Scene()
-        this.camera = new Camera(this)
+        this.camera = new Camera()
         this.renderer = new Renderer()
+        this.world = new World()
 
-        this.sizes.on('resize', this.resize)
+        this.sizes.on('resize', () => {
+            this.resize()
+        })
 
         this.time.on('tick', () => {
             this.update()
@@ -35,11 +39,12 @@ export default class Experience {
     }
 
     resize() {
-      this.camera.resize()
-      this.renderer.resize()
+        this.camera.resize()
+        this.renderer.resize()
     }
 
     update() {
-
+        this.camera.update()
+        this.renderer.update()
     }
 }
